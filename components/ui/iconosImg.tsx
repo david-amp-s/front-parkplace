@@ -7,13 +7,13 @@ interface IconosImgProps {
 
 const IconosImg = ({ ruta, color }:IconosImgProps) => {
   return (
-    <div className={`w-13 h-13 rounded-2xl flex items-center justify-center ${color}`}>
+    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${color}`}>
       <Image
         src={`/icons/${ruta}.png`}
         alt="Icono"
-        width={30}
-        height={30}
-        className="p-2"
+        width={40}
+        height={40}
+        className="p-1"
       />
     </div> 
   );

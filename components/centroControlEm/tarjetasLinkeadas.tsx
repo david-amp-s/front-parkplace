@@ -20,7 +20,7 @@ const TarjetaLinkeadas = ({titulo,descripcion, color}
         };
     return ( 
           
-           <div onClick={handleClick} className=" w-65 h-34 bg-gradient-to-br from-white to-gray-50 shadow-md rounded-2xl p-4 flex flex-col gap-4 justify-center">
+           <div onClick={handleClick} className=" w-65 h-35 bg-gradient-to-br from-white to-gray-50 shadow-md rounded-2xl  flex flex-col gap-4 justify-center">
                         <IconosImg ruta={format(titulo)} color={color}/>
                        <div>
                          <h2>{titulo}</h2>
