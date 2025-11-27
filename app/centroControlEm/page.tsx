@@ -1,4 +1,5 @@
 import TarjetaLinkeadas from "@/components/centroControlEm/tarjetasLinkeadas";
+import TarjetasReportes from "@/components/centroControlEm/tarjetasReportes";
 import { Button } from "@/components/ui/button";
 import IconosImg from "@/components/ui/iconosImg";
 
@@ -8,7 +9,8 @@ const CentroControlEmpleado = () => {
         <>            
             {/* header */}
 
-            <div className="w-full h-20 flex items-center justify-between shadow-md px-10  ">
+            <div className="w-full h-20 flex items-center justify-between shadow-md px-10 fixed top-0 left-0 bg-white z-50">
+
 
                 {/* logo y titulo */}
 
@@ -25,7 +27,7 @@ const CentroControlEmpleado = () => {
 
                 {/* usuario cerrar sesion*/}
 
-                <div className="flex items-center gap-4 ">
+                <div className="flex items-center gap-4  ">
                     <div>
                     <h2>NOMBRE USUARIO</h2>
                 <h3 className="text-gray-400">operador</h3>
@@ -36,35 +38,54 @@ const CentroControlEmpleado = () => {
 
         {/* body contenido centro de control */}
 
-        <section className=" p-8 bg-gradient-to-br from-blue-50 via-sky-50 to-blue-100 w-full h-screen ">
+        <section className=" p-8 bg-gradient-to-br from-blue-50 via-sky-50 to-blue-100 w-full h-full mt-15">
             <h1 className="text-xl">Panel de control empleado</h1>
             <h3 className="text-gray-400">Acciones rapidas para la gestión del parqueadero</h3>
 
             {/* contenedor acciones */}
 
-            <div>
+            <div className="mt-4">
                 {/* listado acciones rapidas */}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 place-items-center gap-y-16 ">
 
+                {/* Registrar usuario */ }
+                <TarjetaLinkeadas titulo="Registrar Usuario" descripcion="Nuevo cliente" color="bg-gradient-to-br from-blue-500  to-blue-300"/>
 
-                <TarjetaLinkeadas titulo="Registrar Usuario" descripcion="Nuevo cliente" color="bg-green-500"/>
+                {/* Registrar vehiculo */ }
+                <TarjetaLinkeadas titulo="Registrar Vehiculo" descripcion="Agregar vehículo" color="bg-gradient-to-br from-blue-500  to-green-300"/>
 
-                <TarjetaLinkeadas titulo="Registrar Vehiculo" descripcion="Agregar vehículo" color="bg-green-500"/>
+                {/* Ingreso vehiculo */ }
+                <TarjetaLinkeadas titulo="Ingreso Vehiculo" descripcion="Registrar entrada" color="bg-gradient-to-br from-green-500  to-green-300"/>
 
-                <TarjetaLinkeadas titulo="Ingreso Vehiculo" descripcion="Registrar entrada" color="bg-green-500"/>
+                {/* Salida vehiculo */ }
+                <TarjetaLinkeadas titulo="Salida Vehiculo" descripcion="Registrar salida" color="bg-gradient-to-br from-orange-500  to-orange-300"/>
 
-                <TarjetaLinkeadas titulo="Salida Vehiculo" descripcion="Registrar salida" color="bg-green-500"/>
+                {/* Vehiculos dentro */ }
+                <TarjetaLinkeadas titulo="Vehiculos Dentro" descripcion="ver listado" color="bg-gradient-to-br from-purple-600  to-purple-400"/>
+                {/* Facturacion */ }
+                <TarjetaLinkeadas titulo="Facturacion" descripcion="Generar facturas" color="bg-gradient-to-br from-fuchsia-600  to-fuchsia-400"/>
 
-                <TarjetaLinkeadas titulo="Vehiculos Dentro" descripcion="ver listado" color="bg-green-500"/>
+                {/* Vehiculos registrados */ }
+                <TarjetaLinkeadas titulo="Vehiculos Registrados" descripcion="Base de vehiculos" color="bg-gradient-to-br from-cyan-600  to-cyan-400"/>
 
-                <TarjetaLinkeadas titulo="Facturacion" descripcion="Generar facturas" color="bg-green-500"/>
-
-                <TarjetaLinkeadas titulo="Vehiculos Registrados" descripcion="Base de vehiculos" color="bg-green-500"/>
-
-                <TarjetaLinkeadas titulo="Clientes Registrados" descripcion="base de clientes" color="bg-green-500"/>
+                {/* Clientes registrados */ }
+                <TarjetaLinkeadas titulo="Clientes Registrados" descripcion="base de clientes" color="bg-gradient-to-br from-teal-600  to-teal-400"/>
+            
                 </div>
 
+                {/* Reportes */ }
+                <div className="flex justify-between">
+
+                    {/* Vehiculos Dentro*/ }
+                    <TarjetasReportes titulo="Vehículos Dentro" contenido= "24" color="bg-gradient-to-br from-blue-400  to-blue-200" ruta="RegistrarVehiculo"/>
+
+                    {/*Ingresos hoy*/ }
+                     <TarjetasReportes titulo="Ingresos hoy" contenido= "$340" color="bg-gradient-to-br from-green-400  to-green-200" ruta="RegistrarVehiculo"/>
+                    
+                    {/*Capacidad */}
+                      <TarjetasReportes titulo="Capacidad" contenido= "80%" color="bg-gradient-to-br from-orange-400  to-orange-200" ruta="RegistrarVehiculo"/>
+                </div>
             </div>
         </section>
         </>
