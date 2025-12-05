@@ -57,7 +57,7 @@ export default function LoginPage() {
     toast.dismiss(toastId);
     toast.success("Login exitoso");
 
-    if (data.rol === "ADMIN") router.push("/admin/DashboardAdmin");
+    if (data.rol === "ADMIN") router.push("/admin");
     else if (data.rol === "EMPLEADO") router.push("/empleado");
     else router.push("/dashboard");
 

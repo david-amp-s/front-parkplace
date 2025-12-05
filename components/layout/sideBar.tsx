@@ -46,7 +46,7 @@ const SideBar = () => {
         <nav className="flex flex-col gap-3 flex-1">
 
           <LinkItem
-            href="/dashboard"
+            href="/dashboardAdmin"
             label="Dashboard"
             icon="/icons/dashboard.svg"
           />
