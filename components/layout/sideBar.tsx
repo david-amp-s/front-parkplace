@@ -46,7 +46,7 @@ const SideBar = () => {
         <nav className="flex flex-col gap-3 flex-1">
 
           <LinkItem
-            href="/dashboardAdmin"
+            href="/admin"
             label="Dashboard"
             icon="/icons/dashboard.svg"
           />
@@ -66,8 +66,8 @@ const SideBar = () => {
 
             {openOps && (
               <div className="ml-6 mt-2 flex flex-col gap-1">
-                <LinkItem href="/ingreso" label="Ingreso" icon="/icons/ingreso.svg" />
-                <LinkItem href="/salida" label="Salida" icon="/icons/salida.svg" />
+                <LinkItem href="/admin/ingreso" label="Ingreso" icon="/icons/ingreso.svg" />
+                <LinkItem href="/admin/salida" label="Salida" icon="/icons/salida.svg" />
                 <LinkItem href="/vehiculos-dentro" label="Vehículos Dentro" icon="/icons/lista.svg" />
               </div>
             )}
@@ -80,7 +80,7 @@ const SideBar = () => {
               className="flex items-center justify-between w-full px-3 text-sm font-semibold text-gray-500"
             >
               <span className="flex items-center gap-2">
-                <img src="/icons/gestion.svg" className="w-5 h-5" alt="" />
+                <img src="/icons/gestion.svg" className="w-5 h-5" alt="/icons/gestion.svg" />
                 Gestión
               </span>
               <span>{openGest ? "▾" : "▸"}</span>
@@ -88,7 +88,7 @@ const SideBar = () => {
 
             {openGest && (
               <div className="ml-6 mt-2 flex flex-col gap-1">
-                <LinkItem href="/usuarios" label="Usuarios" icon="/icons/usuarios.svg" />
+                <LinkItem href="/usuarios" label="Usuarios" icon="/icons/gestion.svg" />
                 <LinkItem href="/vehiculos" label="Vehículos" icon="/icons/vehiculo.svg" />
                 <LinkItem href="/clientes" label="Clientes" icon="/icons/clientes.svg" />
                 <LinkItem href="/operadores" label="Operadores" icon="/icons/operador.svg" />
@@ -103,7 +103,7 @@ const SideBar = () => {
               className="flex items-center justify-between w-full px-3 text-sm font-semibold text-gray-500"
             >
               <span className="flex items-center gap-2">
-                <img src="/icons/config.svg" className="w-5 h-5" alt="" />
+                <img src="/icons/operaciones.svg" className="w-5 h-5" alt="" />
                 Configuraciones
               </span>
               <span>{openConf ? "▾" : "▸"}</span>
@@ -114,13 +114,13 @@ const SideBar = () => {
                 <LinkItem href="/tarifas" label="Tarifas" icon="/icons/tarifas.svg" />
                 <LinkItem href="/espacios" label="Espacios" icon="/icons/espacios.svg" />
                 <LinkItem href="/tipos-pago" label="Tipos de Pago" icon="/icons/pago.svg" />
-                <LinkItem href="/tipos-vehiculo" label="Tipos de Vehículo" icon="/icons/tipo-vehiculo.svg" />
+                <LinkItem href="/tipos-vehiculo" label="Tipos de Vehículo" icon="/icons/vehiculo.svg" />
               </div>
             )}
           </div>
 
           <LinkItem href="/facturacion" label="Facturación" icon="/icons/factura.svg" />
-          <LinkItem href="/reportes" label="Reportes" icon="/icons/reportes.svg" />
+
         </nav>
       </div>
 

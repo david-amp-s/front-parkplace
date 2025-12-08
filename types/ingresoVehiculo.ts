@@ -1,4 +1,3 @@
-"use server";
 
 import api from "@/lib/api";
 
@@ -14,9 +13,9 @@ export interface IngresoDto {
   fecha_ingreso: string;
 }
 
-export async function ingresarVehiculo(placa: string): Promise<IngresoDto> {
+export async function ingresarVehiculo(placa: IngresoCreateDto): Promise<IngresoDto> {
   try {
-    const response = await api.post<IngresoDto>("/ingreso", { placa });
+    const response = await api.post<IngresoDto>("/ingresos", { placa });
     return response.data;
   } catch (error: any) {
     console.error("Error ingresando vehículo:", error);
