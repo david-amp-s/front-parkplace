@@ -3,6 +3,7 @@ import { Urbanist } from "next/font/google";
 import "@/styles/globals.css"
 import { Toaster } from "@/components/ui/sonner"; // ← Importante
 
+
 const urbanist = Urbanist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${urbanist.variable} antialiased`}>
-        {children}
+         
+          {children}
+       
         <Toaster />
       </body>
     </html>

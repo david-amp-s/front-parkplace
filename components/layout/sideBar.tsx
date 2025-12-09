@@ -68,7 +68,7 @@ const SideBar = () => {
               <div className="ml-6 mt-2 flex flex-col gap-1">
                 <LinkItem href="/admin/ingreso" label="Ingreso" icon="/icons/ingreso.svg" />
                 <LinkItem href="/admin/salida" label="Salida" icon="/icons/salida.svg" />
-                <LinkItem href="/vehiculos-dentro" label="Vehículos Dentro" icon="/icons/lista.svg" />
+                <LinkItem href="/listadoVehiculos" label="Vehículos Dentro" icon="/icons/lista.svg" />
               </div>
             )}
           </div>
