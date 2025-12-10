@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
 import CardGestion from "../ui/cardGestion";
 import { datosCliente, InfoClienteDto } from "@/types/clientes";
 import TablaCliente from "../tablas/clientes/page";
