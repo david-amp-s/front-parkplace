@@ -68,7 +68,7 @@ const SideBar = () => {
               <div className="ml-6 mt-2 flex flex-col gap-1">
                 <LinkItem href="/admin/ingreso" label="Ingreso" icon="/icons/ingreso.svg" />
                 <LinkItem href="/admin/salida" label="Salida" icon="/icons/salida.svg" />
-                <LinkItem href="/listadoVehiculos" label="Vehículos Dentro" icon="/icons/lista.svg" />
+                <LinkItem href="/admin/listadoVehiculos" label="Vehículos Dentro" icon="/icons/lista.svg" />
               </div>
             )}
           </div>
@@ -88,9 +88,8 @@ const SideBar = () => {
 
             {openGest && (
               <div className="ml-6 mt-2 flex flex-col gap-1">
-                <LinkItem href="/usuarios" label="Usuarios" icon="/icons/gestion.svg" />
+                <LinkItem href="/admin/usuarios" label="Usuarios" icon="/icons/gestion.svg" />
                 <LinkItem href="/vehiculos" label="Vehículos" icon="/icons/vehiculo.svg" />
-                <LinkItem href="/clientes" label="Clientes" icon="/icons/clientes.svg" />
                 <LinkItem href="/operadores" label="Operadores" icon="/icons/operador.svg" />
               </div>
             )}
@@ -111,7 +110,7 @@ const SideBar = () => {
 
             {openConf && (
               <div className="ml-6 mt-2 flex flex-col gap-1">
-                <LinkItem href="/tarifas" label="Tarifas" icon="/icons/tarifas.svg" />
+                <LinkItem href="/admin/tarifas" label="Tarifas" icon="/icons/tarifas.svg" />
                 <LinkItem href="/espacios" label="Espacios" icon="/icons/espacios.svg" />
                 <LinkItem href="/tipos-pago" label="Tipos de Pago" icon="/icons/pago.svg" />
                 <LinkItem href="/tipos-vehiculo" label="Tipos de Vehículo" icon="/icons/vehiculo.svg" />
