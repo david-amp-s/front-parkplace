@@ -4,7 +4,7 @@ import Login from "@/components/login/login";
 export default function Home() {
   return (
     <div className="w-full h-screen overflow-hidden bg-black">
-      <div className="w-full h-screen bg-custom-radial flex flex-col items-center absolute p-10 box-content">
+      <div className="w-full h-full bg-custom-radial flex flex-col items-center absolute p-10 ">
         
     <div className="relative top-0 left-0 w-full flex justify-center h-40 items-center ">
           <h1 className="text-6xl font-vantage text-white drop-shadow-xl mb-10  ">

@@ -3,27 +3,29 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Car } from "lucide-react";
-import { EspacioDto, listarEspaciosOcupados } from "@/types/espacios";
+import { IngresoDto, espaciosOcupados } from "@/types/ingresoVehiculo";
 
 export default function ListadoVehiculos() {
-  const [vehiculos, setVehiculos] = useState<EspacioDto[]>([]);
+  const [vehiculos, setVehiculos] = useState<IngresoDto[]>([]);
   const [filtro, setFiltro] = useState("");
 
   useEffect(() => {
-    const cargarEspacios = async () => {
+    const cargarVehiculos = async () => {
       try {
-        const data = await listarEspaciosOcupados();
+        const data = await espaciosOcupados();
         setVehiculos(data);
       } catch (error) {
-        console.error("Error al cargar los espacios ocupados:", error);
+        console.error("Error al cargar los ingresos ocupados:", error);
       }
     };
 
-    cargarEspacios();
+    cargarVehiculos();
   }, []);
 
   const filtrados = vehiculos.filter((v) =>
-    v.codigo.toLowerCase().includes(filtro.toLowerCase())
+    v.placa.toLowerCase().includes(filtro.toLowerCase()) ||
+    v.tipoVehiculo.toLowerCase().includes(filtro.toLowerCase()) ||
+    v.espacio.toLowerCase().includes(filtro.toLowerCase())
   );
 
   return (
@@ -34,7 +36,7 @@ export default function ListadoVehiculos() {
       </div>
 
       <Input
-        placeholder="Buscar por placa, marca o modelo..."
+        placeholder="Buscar por placa, tipo o espacio..."
         className="rounded-xl shadow"
         value={filtro}
         onChange={(e) => setFiltro(e.target.value)}
@@ -48,14 +50,17 @@ export default function ListadoVehiculos() {
                 <div className="bg-purple-200 text-purple-700 p-2 rounded-full">
                   <Car size={18} />
                 </div>
-                <h2 className="text-lg font-semibold">{v.codigo}</h2>
+                <h2 className="text-lg font-semibold">{v.placa}</h2>
               </div>
 
               <p className="text-sm text-gray-700">
-                Tipo espacio: <span className="font-medium">{v.tipoEspacio}</span>
+                Tipo vehículo: <span className="font-medium">{v.tipoVehiculo}</span>
               </p>
               <p className="text-sm text-gray-700">
-                Vehículo permitido: <span className="font-medium">{v.tipoVehiculoPermitido}</span>
+                Espacio: <span className="font-medium">{v.espacio}</span>
+              </p>
+              <p className="text-sm text-gray-700">
+                Fecha ingreso: <span className="font-medium">{v.fecha_ingreso}</span>
               </p>
             </CardContent>
           </Card>

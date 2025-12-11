@@ -42,11 +42,11 @@ const AdminDashboard = () => {
       <TarjetasResumen titulo="Ingresos Día" color="bg-gradient-to-br from-green-600 to-green-400" valor={data?.diario ?? 0} />
       <TarjetasResumen titulo="Ingresos Semana" color="bg-gradient-to-br from-blue-600 to-blue-400" valor={data?.semana ?? 0} />
       <TarjetasResumen titulo="Ingresos Mes" color="bg-gradient-to-br from-purple-600 to-purple-400" valor={data?.mensual ?? 0} />
-      <TarjetasResumen titulo="Vehículos Dentro" color="bg-gradient-to-br from-orange-600 to-orange-400" valor={data?.vehiculosDentro ?? 0} />
+      <TarjetasResumen titulo="Vehiculos Dentro" color="bg-gradient-to-br from-orange-600 to-orange-400" valor={data?.vehiculosDentro ?? 0} />
 
       <TarjetasResumen titulo="Taza de Ocupación" color="bg-gradient-to-br from-cyan-600 to-cyan-400" valor={`${data?.tazaDeOcupacion ?? 0}%`} />
       <TarjetasResumen titulo="Espacios Disponibles" color="bg-gradient-to-br from-indigo-600 to-indigo-400" valor={data?.espaciosDisponibles ?? 0} />
-      <TarjetasResumen titulo="Vehículos Registrados" color="bg-gradient-to-br from-fuchsia-600 to-fuchsia-400" valor={data?.vehiculosDentro ?? 0} />
+      <TarjetasResumen titulo="Vehiculos Registrados" color="bg-gradient-to-br from-fuchsia-600 to-fuchsia-400" valor={data?.vehiculosDentro ?? 0} />
       <TarjetasResumen titulo="Clientes" color="bg-gradient-to-br from-teal-600 to-teal-400" valor={data?.totalClientes ?? 0} />
     </div>
 
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
 
       {/* Usuarios */}
-      <div className="bg-white w-[90%] p-6 shadow rounded-2xl border border-gray-200 gap-3">
+      <div className="bg-white w-[90%] p-6 shadow rounded-2xl border border-gray-200 ">
         <h3 className="text-xl font-medium mb-4">Usuarios registrados</h3>
         {data && <TableUsuarios usuarios={data.listadoUsuarios} />}
       </div>
@@ -71,30 +71,34 @@ const AdminDashboard = () => {
     <div className="bg-white rounded-2xl p-6 shadow border border-gray-200 mt-12">
       <h2 className="text-xl font-semibold mb-4">Acciones Rápidas</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+      <div className="flex justify-around items-center">
 
         <TarjetasAccionesRapidas
-          color="bg-gradient-to-br from-emerald-700 via-emerald-300 to-emerald-300"
-          rutaImg="IngresoVehiculo"
-          titulo="Ingreso Rápido"
-        />
+             color="bg-blue-200"
+             rutaImg="IngresoRapido"
+             titulo="Ingreso Rápido" 
+             rutaLink={"/admin/ingreso"}        
+             />
 
         <TarjetasAccionesRapidas
-          color="bg-gradient-to-br from-red-700 via-red-300 to-red-300"
-          rutaImg="IngresoVehiculo"
+          color="bg-red-200"
+          rutaImg="SalidaRapida"
           titulo="Salida Rápida"
+          rutaLink={"/admin/salida"}
         />
 
         <TarjetasAccionesRapidas
-          color="bg-gradient-to-br from-emerald-700 via-emerald-300 to-emerald-300"
-          rutaImg="IngresoVehiculo"
+          color="bg-green-200 "
+          rutaImg="NuevoCliente"
           titulo="Nuevo Cliente"
+          rutaLink={"/admin/usuarios"}
         />
 
         <TarjetasAccionesRapidas
-          color="bg-gradient-to-br from-red-700 via-red-300 to-red-300"
-          rutaImg="IngresoVehiculo"
+          color="bg-purple-200"
+          rutaImg="VerFacturas"
           titulo="Ver Reportes"
+          rutaLink={"/admin/facturacion"}
         />
         
       </div>

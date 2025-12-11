@@ -17,3 +17,8 @@ export async function ingresarVehiculo(placa: IngresoCreateDto): Promise<Ingreso
   const response = await api.post<IngresoDto>("/ingresos",placa)
   return response.data
 }
+
+export async function espaciosOcupados():Promise<IngresoDto[]> {
+  const res = await api.get("/ingresos/ocupados")
+  return res.data
+}
