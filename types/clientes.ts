@@ -1,5 +1,9 @@
 import api from "@/lib/api";
-
+export interface ClienteResponsiveDto {
+  id: number;
+  nombre: string;
+  correo : string
+}
 export interface ClienteDto {
   id: number;
   nombre: string;
