@@ -31,7 +31,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
       <SideBar />
 
       {/* contenido */}
-      <div className="bg-gradient-to-br from-blue-50 via-sky-50 to-blue-100 w-full h-screen">
+      <div className="bg-gradient-to-br from-blue-50 via-sky-50 to-blue-100 w-full h-full">
         <div className="sticky top-0 border-2 w-full h-10 bg-white z-10" />
         {children}
       </div>

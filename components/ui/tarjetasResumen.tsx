@@ -3,7 +3,7 @@ import IconosImg from "../ui/iconosImg";
 interface TarjetasResumenProps{
  titulo :string,
  color : string,
- valor : number
+ valor : number|string|undefined
 };
 const TarjetasResumen = ({titulo,color,valor}:TarjetasResumenProps) => {
     return (  

@@ -1,75 +1,109 @@
+"use client";
+import TableUsuarios from "@/components/tablas/dashboardAdmin/tablaEmpleados";
+import TableVehiculosRecientes from "@/components/tablas/dashboardAdmin/tablaVehiculosDs";
 import TarjetasAccionesRapidas from "@/components/ui/tarjetasAccionesRapidas";
 import TarjetasResumen from "@/components/ui/tarjetasResumen";
+import { DashboardAdminDto, datosDashboardAdmin } from "@/types/dashboardAdmin";
+import { useEffect, useState } from "react";
 
 
 const AdminDashboard = () => {
-    return (  
-        <div>
-            <div className="p-10">
-                    <h2 className="text-3xl">Panel Administrador</h2>
-                    <p className="text-gray-400" >Vista general del parqueadero</p>
-                   {/*Resumen parqueadero */}
-                    <div className="mt-10 grid grid-cols-4 gap-7"> 
-                        {/*Ingresos dia */}
-                    <TarjetasResumen titulo={"IngresosDía"} color={"bg-gradient-to-br from-green-600 to-green-400"} valor={0}/>
+    const [data, setData] = useState<DashboardAdminDto | null>(null);
+    const [loading, setLoading] = useState(true);
 
-                     {/* Ingresos semana*/}
-                     <TarjetasResumen titulo={"Ingresos Semana"} color={"bg-gradient-to-br from-blue-600 to-blue-400"} valor={0}/>
-                      {/*Ingresos mes */}
-                    <TarjetasResumen titulo={"IngresosMes"} color={"bg-gradient-to-br from-purple-600 to-purple-400"} valor={0}/>
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await datosDashboardAdmin();
+                setData(res);
+            } catch (error) {
+                console.error("Error obteniendo dashboard:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-                    {/* Vehiculos Dentro */}
-                    <TarjetasResumen titulo={"VehiculosDentro"} color={"bg-gradient-to-br from-orange-600 to-orange-400"} valor={0}/>
+        fetchData();
+    }, []);
 
-                    {/* Taza de ocupacion */}
-                    <TarjetasResumen titulo={"Taza De Ocupación"} color={"bg-gradient-to-br from-cyan-600 to-cyan-400"} valor={0}/>
+    if (loading) return <p className="p-10">Cargando dashboard...</p>;
 
-                    {/* Tiempo Promedio */}
-                    <TarjetasResumen titulo={"Tiempo Promedio"} color={"bg-gradient-to-br from-indigo-600 to-indigo-400"} valor={0}/>
+   return (
+  <div className="p-10  min-h-screen">
 
-                    {/* Vehiculos Registrados */}
-                    <TarjetasResumen titulo={"Vehiculos Registrados"} color={"bg-gradient-to-br from-fuchsia-600 to-fuchsia-400"} valor={0}/>
+    {/* Título */}
+    <div>
+      <h2 className="text-4xl font-semibold">Panel Administrador</h2>
+      <p className="text-gray-500 mt-1">Vista general del parqueadero</p>
+    </div>
 
-                    {/* Clientes */}
-                    <TarjetasResumen titulo={"Clientes"} color={"bg-gradient-to-br from-teal-600 to-teal-400"} valor={0}/>
-                    
-                    </div>
-                   
-                    {/*Informacion parqueadero */}
-                    <div className="flex justify-around mt-8">
-                        {/* Listado operadores */}
-                        <div className="bg-white">
-                            tabla
-                        </div>
-                        
-                        {/*Listado tarifas */}
-                        <div className="bg-white">
-                            tabla
-                        </div>
-                    </div>
-                    {/*Acciones rapidas */}
-                        <div className="bg-white rounded-2xl p-3 w-full mt-8">
-                            <h2 className="text-xl">Acciones Rápidas</h2>
-                            <div className="flex gap-4 justify-center mt-3">
+    {/* Cards principales */}
+    <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+      <TarjetasResumen titulo="Ingresos Día" color="bg-gradient-to-br from-green-600 to-green-400" valor={data?.diario ?? 0} />
+      <TarjetasResumen titulo="Ingresos Semana" color="bg-gradient-to-br from-blue-600 to-blue-400" valor={data?.semana ?? 0} />
+      <TarjetasResumen titulo="Ingresos Mes" color="bg-gradient-to-br from-purple-600 to-purple-400" valor={data?.mensual ?? 0} />
+      <TarjetasResumen titulo="Vehículos Dentro" color="bg-gradient-to-br from-orange-600 to-orange-400" valor={data?.vehiculosDentro ?? 0} />
 
-                                {/*Ingreso Rapido */}
-                                <TarjetasAccionesRapidas color={"bg-gradient-to-br from-emerald-700 via-emerald-300 to-emerald-300"} rutaImg={"IngresoVehiculo"} titulo={"ingreso rapido"}/>
+      <TarjetasResumen titulo="Taza de Ocupación" color="bg-gradient-to-br from-cyan-600 to-cyan-400" valor={`${data?.tazaDeOcupacion ?? 0}%`} />
+      <TarjetasResumen titulo="Espacios Disponibles" color="bg-gradient-to-br from-indigo-600 to-indigo-400" valor={data?.espaciosDisponibles ?? 0} />
+      <TarjetasResumen titulo="Vehículos Registrados" color="bg-gradient-to-br from-fuchsia-600 to-fuchsia-400" valor={data?.vehiculosDentro ?? 0} />
+      <TarjetasResumen titulo="Clientes" color="bg-gradient-to-br from-teal-600 to-teal-400" valor={data?.totalClientes ?? 0} />
+    </div>
 
-                            {/*Salida Rapida */} 
-                             <TarjetasAccionesRapidas color={"bg-gradient-to-br from-red-700 via-red-300 to-red-300"} rutaImg={"IngresoVehiculo"} titulo={"Salida Rapida"}/>
+    {/* Sección de tablas */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
 
-                            {/*Nuevo Cliente */}
-                             <TarjetasAccionesRapidas color={"bg-gradient-to-br from-emerald-700 via-emerald-300 to-emerald-300"} rutaImg={"IngresoVehiculo"} titulo={"Nuevo Cliente"}/>
+      {/* Usuarios */}
+      <div className="bg-white w-[90%] p-6 shadow rounded-2xl border border-gray-200 gap-3">
+        <h3 className="text-xl font-medium mb-4">Usuarios registrados</h3>
+        {data && <TableUsuarios usuarios={data.listadoUsuarios} />}
+      </div>
 
-                            {/*Ver Reportes */}
-                             <TarjetasAccionesRapidas color={"bg-gradient-to-br from-red-700 via-red-300 to-red-300"} rutaImg={"IngresoVehiculo"} titulo={"Ver Reportes "}/>
+      {/* Vehículos recientes */}
+      <div className="bg-white p-6 shadow rounded-2xl border border-gray-200">
+        <h3 className="text-xl font-medium mb-4">Vehículos recientes</h3>
+        {data && <TableVehiculosRecientes vehiculos={data.listadoVehiculosRecientes} />}
+      </div>
 
-                         
-                            </div>
-                        </div>
-                </div>
-        </div>
-    );
+    </div>
+
+    {/* Acciones rápidas */}
+    <div className="bg-white rounded-2xl p-6 shadow border border-gray-200 mt-12">
+      <h2 className="text-xl font-semibold mb-4">Acciones Rápidas</h2>
+
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+
+        <TarjetasAccionesRapidas
+          color="bg-gradient-to-br from-emerald-700 via-emerald-300 to-emerald-300"
+          rutaImg="IngresoVehiculo"
+          titulo="Ingreso Rápido"
+        />
+
+        <TarjetasAccionesRapidas
+          color="bg-gradient-to-br from-red-700 via-red-300 to-red-300"
+          rutaImg="IngresoVehiculo"
+          titulo="Salida Rápida"
+        />
+
+        <TarjetasAccionesRapidas
+          color="bg-gradient-to-br from-emerald-700 via-emerald-300 to-emerald-300"
+          rutaImg="IngresoVehiculo"
+          titulo="Nuevo Cliente"
+        />
+
+        <TarjetasAccionesRapidas
+          color="bg-gradient-to-br from-red-700 via-red-300 to-red-300"
+          rutaImg="IngresoVehiculo"
+          titulo="Ver Reportes"
+        />
+        
+      </div>
+
+    </div>
+
+  </div>
+);
+
 }
  
 export default AdminDashboard;
