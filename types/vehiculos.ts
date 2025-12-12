@@ -1,5 +1,5 @@
 
-import { ClienteResponsiveDto } from "./clientes";
+import { ClienteDto } from "./clientes";
 import api from "@/lib/api";
 
 export interface VehiculoCreateDto {
@@ -13,7 +13,7 @@ export interface VehiculoDto {
   id: number;
   placa: string;
   tipoVehiculo: string;  
-  cliente: ClienteResponsiveDto;  
+  cliente: ClienteDto;  
 }
 
 
@@ -44,9 +44,14 @@ export async function crearVehiculo(
 
 // Corregir vehículo (PUT /api/vehiculos/{placa})
 export async function corregirVehiculo(
-  placa: string,
+  id : number,
   vehiculo: VehiculoCreateDto
 ): Promise<VehiculoDto> {
-  const res = await api.put(`/vehiculos/${placa}`, vehiculo);
+  const res = await api.put(`/vehiculos/${id}`, vehiculo);
   return res.data;
+}
+
+export async function eliminarVehiculo(id:number) {
+  const res = await api.delete(`/vehiculos/${id}`)
+  return res.data
 }

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import IconosImg from "@/components/ui/iconosImg";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import Link from "next/link";
 const EmpleadoLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -37,18 +37,22 @@ const EmpleadoLayout = ({ children }: { children: React.ReactNode }) => {
       {/* Header */}
       <div className="w-full h-20 flex items-center justify-between shadow-md px-10 fixed top-0 left-0 bg-white z-50">
         {/* Logo y título */}
-        <div className="flex items-center gap-4">
-          <IconosImg ruta="ParkPlace" color="bg-blue-600" />
-          <div>
-            <h1 className="text-3xl font-bold">Parkplace</h1>
-            <h3 className="text-gray-400">Panel operador</h3>
-          </div>
-        </div>
+        <Link
+  href="/empleado"
+  className="flex items-center gap-4 transition-transform duration-300 hover:scale-105 hover:opacity-90"
+>
+  <IconosImg ruta="ParkPlace" color="bg-blue-600" />
+
+  <div>
+    <h1 className="text-3xl font-bold">Parkplace</h1>
+    <h3 className="text-gray-400">Panel operador</h3>
+  </div>
+</Link>
 
         {/* Usuario + cerrar sesión */}
         <div className="flex items-center gap-4">
           <div>
-            <h2>NOMBRE USUARIO</h2>
+            <h2>OPERADOR</h2>
             <h3 className="text-gray-400">Operador</h3>
           </div>
           <Button onClick={handleLogout}>Cerrar sesión</Button>

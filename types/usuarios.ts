@@ -31,9 +31,14 @@ export async function crearUsuario(
 
 // ✅ Modificar usuario por correo (PUT /api/usuarios/{correo})
 export async function modificarUsuario(
-  correo: string,
+  id: number,
   usuario: UsuarioCreateDto
 ): Promise<UsuarioDto> {
-  const response = await api.put<UsuarioDto>(`/usuarios/${correo}`, usuario);
+  const response = await api.put<UsuarioDto>(`/usuarios/${id}`, usuario);
   return response.data;
+}
+
+export async function eliminarUsuario(id:number):Promise<void> {
+  const response = await api.delete(`/usuarios/${id}` )
+  return response.data
 }

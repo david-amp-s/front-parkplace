@@ -2,7 +2,14 @@ import Image from "next/image";
 import { VehiculoDto } from "@/types/vehiculos";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<VehiculoDto>[] = [
+import { eliminarVehiculo } from "@/types/vehiculos";
+import { toast } from "sonner";
+import ModalEditarVehiculo from "@/components/parking/modalEditarVehiculo";
+
+export const columns = (
+  onUpdated: (v: VehiculoDto) => void,
+  onDelete: (id: number) => void
+): ColumnDef<VehiculoDto>[] => [
   {
     accessorKey: "placa",
     header: "Placa",
@@ -24,6 +31,7 @@ export const columns: ColumnDef<VehiculoDto>[] = [
       );
     },
   },
+
   {
     accessorKey: "tipoVehiculo",
     header: "Tipo",
@@ -41,26 +49,37 @@ export const columns: ColumnDef<VehiculoDto>[] = [
       );
     },
   },
+
   {
     header: "Cliente",
     accessorFn: (row) => row.cliente?.nombre ?? "N/A",
   },
   {
     header: "Correo",
-    accessorFn: (row) => row.cliente.correo ?? "N/A",
+    accessorFn: (row) => row.cliente?.correo ?? "N/A",
   },
+
+  // ACCIONES
   {
     id: "acciones",
     header: "Acciones",
-    cell: ({ row }) => (
-      <div className="flex gap-2">
-        <button className="flex items-center gap-1 text-blue-500 hover:underline">
-          <img src="/icons/editar.svg" className="w-4 h-4" alt="Editar" />
-        </button>
-        <button className="hover:underline">
-          <img src="/icons/eliminar.svg" className="w-4 h-4" alt="Eliminar" />
-        </button>
-      </div>
-    ),
+    cell: ({ row }) => {
+      const vehiculo = row.original;
+
+      return (
+        <div className="flex gap-4 items-center">
+          {/* Editar */}
+          <ModalEditarVehiculo vehiculo={vehiculo} onUpdated={onUpdated} />
+
+          {/* Eliminar */}
+          <button
+            onClick={() => onDelete(vehiculo.id)}
+            className="hover:underline"
+          >
+            <img src="/icons/eliminar.svg" className="w-4 h-4" alt="Eliminar" />
+          </button>
+        </div>
+      );
+    },
   },
 ];

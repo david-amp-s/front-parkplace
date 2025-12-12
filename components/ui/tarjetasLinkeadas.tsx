@@ -7,15 +7,16 @@ interface TarjetaLinksProps {
  titulo: string;
 descripcion: string;   
 color : string;
+link : string
 }
 
-const TarjetaLinkeadas = ({titulo,descripcion, color}
+const TarjetaLinkeadas = ({titulo,descripcion, color, link}
 :TarjetaLinksProps) => {
     
 
     const router = useRouter();
     const handleClick = () => {
-        router.push(lowerFirst(formatText(titulo)));
+        router.push(`/empleado/${link}`);
         };
     return ( 
           

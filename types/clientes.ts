@@ -1,4 +1,5 @@
 import api from "@/lib/api";
+
 export interface ClienteResponsiveDto {
   id: number;
   nombre: string;
@@ -35,5 +36,15 @@ export async function listarClientes():Promise<ClienteDto[]> {
 
 export async function crearCliente(data:ClienteCreateDto):Promise<ClienteDto> {
   const res = await api.post("/clientes", data)
+  return res.data
+}
+
+export async function eliminarCliente(id: number): Promise<void> {
+  const res = await api.delete(`/clientes/${id}`);
+  return res.data;
+}
+
+export async function editarCliente(id:number,data: ClienteCreateDto):Promise<ClienteDto> {
+  const res = await api.put(`/clientes/${id}`,data)
   return res.data
 }

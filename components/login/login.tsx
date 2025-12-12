@@ -51,6 +51,7 @@ export default function LoginPage() {
         localStorage.setItem("token", data.tokenJwt);
         localStorage.setItem("rol", data.rol ?? "");
         localStorage.setItem("idUser", String(data.idUser ?? ""));
+        
       }
 
       toast.dismiss(toastId);

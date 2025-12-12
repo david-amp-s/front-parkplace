@@ -37,18 +37,21 @@ export default function CrearUsuarioModal({ onSuccess }: Props) {
     },
   });
 
-  const onSubmit = async (data: UsuarioFormValues) => {
-    try {
-      await crearUsuario(data as UsuarioCreateDto);
-      toast.success("Usuario creado correctamente");
-      setOpen(false);
-      form.reset();
-      onSuccess?.();
-    } catch (error) {
-      console.error(error);
-      toast.error("Error al crear usuario");
-    }
-  };
+const onSubmit = async (data: UsuarioFormValues) => {
+  try {
+    await crearUsuario(data as UsuarioCreateDto);
+    toast.success("Usuario creado correctamente");
+
+    setOpen(false);
+    form.reset();
+
+    window.location.reload();  
+  } catch (error) {
+    console.error(error);
+    toast.error("Error al crear usuario");
+  }
+};
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -89,7 +92,7 @@ export default function CrearUsuarioModal({ onSuccess }: Props) {
             className="border rounded p-2"
           >
             <option value="ADMIN">Administrador</option>
-            <option value="USUARIO">Usuario</option>
+            <option value="EMPLEADO">operador</option>
           </select>
 
           <DialogFooter>

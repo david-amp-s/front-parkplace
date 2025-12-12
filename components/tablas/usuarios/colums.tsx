@@ -1,8 +1,13 @@
 import Image from "next/image";
 import { UsuarioDto } from "@/types/usuarios";
 import { ColumnDef } from "@tanstack/react-table";
+import ModalEditarUsuario from "@/components/parking/modalEditarUsuario";
 
-export const columns: ColumnDef<UsuarioDto>[] = [
+
+export const columns = (
+  onDelete: (id: number) => void,
+  onUpdate: (user: UsuarioDto) => void
+): ColumnDef<UsuarioDto>[] => [
   {
     accessorKey: "nombre",
     header: "Nombre",
@@ -49,15 +54,20 @@ export const columns: ColumnDef<UsuarioDto>[] = [
   {
     id: "acciones",
     header: "Acciones",
-    cell: () => (
-      <div className="flex gap-2">
-        <button className="flex items-center gap-1 text-blue-500 hover:underline">
-          <img src="/icons/editar.svg" className="w-4 h-4" alt="Editar" />
-        </button>
-        <button className="hover:underline">
-          <img src="/icons/eliminar.svg" className="w-4 h-4" alt="Eliminar" />
-        </button>
-      </div>
-    ),
+    cell: ({ row }) => {
+      const usuario = row.original;
+
+      return (
+        <div className="flex gap-2">
+          {/* MODAL EDITAR */}
+          <ModalEditarUsuario usuario={usuario} onUpdated={onUpdate} />
+
+          {/* ELIMINAR */}
+          <button onClick={() => onDelete(usuario.id)}>
+            <img src="/icons/eliminar.svg" className="w-4 h-4" alt="Eliminar" />
+          </button>
+        </div>
+      );
+    },
   },
 ];

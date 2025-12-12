@@ -1,7 +1,9 @@
 "use client";
 
+import { get } from "http";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import IconosImg from "../ui/iconosImg";
 
 const SideBar = () => {
   const router = useRouter();
@@ -35,7 +37,7 @@ const SideBar = () => {
 
         {/* HEADER */}
         <div className="flex items-center gap-4 pb-4 border-b">
-          <img src="/icons/parkplace.png" className="w-10 h-10" alt="" />
+          <IconosImg ruta="ParkPlace" color="bg-blue-600" />
           <div>
             <h1 className="text-xl font-bold">Parkplace</h1>
             <h3 className="text-gray-500 text-sm">Administrador</h3>
@@ -96,12 +98,12 @@ const SideBar = () => {
           </div>
 
           {/* CONFIGURACIONES */}
-          <div>
+          {/**<div>
             <button
               onClick={() => setOpenConf(!openConf)}
               className="flex items-center justify-between w-full px-3 text-sm font-semibold text-gray-500"
             >
-              <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2">
                 <img src="/icons/operaciones.svg" className="w-5 h-5" alt="" />
                 Configuraciones
               </span>
@@ -116,9 +118,9 @@ const SideBar = () => {
                 <LinkItem href="/admin/tiposDeVehiculo" label="Tipos de Vehículo" icon="/icons/vehiculo.svg" />
               </div>
             )}
-          </div>
+          </div> */}
 
-          <LinkItem href="/admin/facturacion" label="Facturación" icon="/icons/factura.svg" />
+         {/* <LinkItem href="/admin/facturacion" label="Facturación" icon="/icons/factura.svg" /> */}
 
         </nav>
       </div>
@@ -128,22 +130,21 @@ const SideBar = () => {
 
         <div className="flex items-center gap-3">
           <div className="bg-blue-100 p-3 rounded-xl">
-            <img src="/icons/user.svg" className="w-6 h-6 text-blue-600" alt="" />
+            
           </div>
 
           <div>
             <p className="font-semibold text-gray-900 leading-tight">
-              Carlos Administrador
+               Administrador
             </p>
-            <p className="text-sm text-gray-500 leading-tight">Administrador</p>
           </div>
         </div>
 
         <button
           className="flex items-center gap-3 w-full px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-xl text-sm font-medium text-gray-700 mt-4"
-          onClick={() => router.push("/logout")}
+          onClick={() => router.push("/")}
         >
-          <img src="/icons/logout.svg" className="w-5 h-5" alt="" />
+          
           Cerrar Sesión
         </button>
       </div>
